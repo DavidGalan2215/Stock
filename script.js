@@ -35,23 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentLanguage = 'en';
     
-    // Obfuscated URL components
     const urlParts = {
-        protocol: [0x68, 0x74, 0x74, 0x70, 0x73, 0x3a, 0x2f, 0x2f],
-        domain: [100, 111, 99, 115, 46, 103, 111, 111, 103, 108, 101, 46, 99, 111, 109],
-        path: [47, 115, 112, 114, 101, 97, 100, 115, 104, 101, 101, 116, 115],
-        getId: function() {
-            return '/d/e/2PACX-1vR2ZLAOSiXHFQBKl_qEiPlXtfXZ0xq5OCg2ePo_aLqOlK_YMi8AI9ZB3Xgw_q7AwB5Fv_rwbrstcwTn/pubhtml?gid=178476066&single=true';
-        },
         getFullUrl: function() {
-            return [
-                String.fromCharCode(...this.protocol),
-                String.fromCharCode(...this.domain),
-                String.fromCharCode(...this.path),
-                this.getId()
-            ].join('');
+            return 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR2ZLAOSiXHFQBKl_qEiPlXtfXZ0xq5OCg2ePo_aLqOlK_YMi8AI9ZB3Xgw_q7AwB5Fv_rwbrstcwTn/pub?gid=178476066&single=true&output=csv';
         }
-    };    
+    };
 
     let allShoes = [];
     let selectedSizes = [];
@@ -128,20 +116,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    
     async function loadData() {
-        const url = urlParts.getFullUrl();
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        try {
+            const url = urlParts.getFullUrl();
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
+            const csvData = await response.text();
+            const parsedData = await parseData(csvData);
+            const filteredData = filterData(parsedData);
+            
+            allShoes = groupShoesBySKU(filteredData);
+            processData();
+        } catch (error) {
+            console.error('Error loading data:', error);
+            showError();
+            throw error; // Re-throw for retry mechanism
         }
-
-        const csvData = await response.text();
-        const parsedData = await parseData(csvData);
-        const filteredData = filterData(parsedData);
-        
-        allShoes = groupShoesBySKU(filteredData);
-        processData();
     }
 
     // Multiple parsing strategies
