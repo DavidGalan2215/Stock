@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         domain: [100, 111, 99, 115, 46, 103, 111, 111, 103, 108, 101, 46, 99, 111, 109], // docs.google.com
         path: [47, 115, 112, 114, 101, 97, 100, 115, 104, 101, 101, 116, 115, 47, 100, 47, 101], // /spreadsheets/d/e
         getId: function() {
-            return '/2PACX-1vR2ZLAOSiXHFQBKl_qEiPlXtfXZ0xq5OCg2ePo_aLqOlK_YMi8AI9ZB3Xgw_q7AwB5Fv_rwbrstcwTn/pubhtml?gid=178476066&single=true';
+            return '/2PACX-1vR2ZLAOSiXHFQBKl_qEiPlXtfXZ0xq5OCg2ePo_aLqOlK_YMi8AI9ZB3Xgw_q7AwB5Fv_rwbrstcwTn/pubhtml?gid=178476066&single=true&output=csv';
         },
         getFullUrl: function() {
             return [
