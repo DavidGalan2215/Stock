@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const urlParts = {
         getFullUrl: function() {
-            return 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR2ZLAOSiXHFQBKl_qEiPlXtfXZ0xq5OCg2ePo_aLqOlK_YMi8AI9ZB3Xgw_q7AwB5Fv_rwbrstcwTn/pub?gid=178476066&single=true&output=csv';
+            return 'docs.google.com/spreadsheets/d/e/2PACX-1vR2ZLAOSiXHFQBKl_qEiPlXtfXZ0xq5OCg2ePo_aLqOlK_YMi8AI9ZB3Xgw_q7AwB5Fv_rwbrstcwTn/pub?gid=178476066&single=true&output=csv';
         }
     };
 
